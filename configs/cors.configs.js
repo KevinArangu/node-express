@@ -1,17 +1,19 @@
-require('dotenv').config();
+require("dotenv").config();
 
-const SERVER_MODE = process.env.NODE_ENV
+const SERVER_MODE = process.env.NODE_ENV;
 const WHITELIST = ["http://localhost:3000"];
-const options = SERVER_MODE === "production" ?
-  {
-    origin: (origin, callback) => {
-      if (WHITELIST.includes(origin)) {
-        callback(null, true);
-      } else {
-        callback(new Error("not permited"))
+
+const options =
+  SERVER_MODE === "production"
+    ? {
+        origin: (origin, callback) => {
+          if (WHITELIST.includes(origin)) {
+            callback(null, true);
+          } else {
+            callback(new Error("not permited"));
+          }
+        },
       }
-    }
-  }
-  : undefined;
+    : undefined;
 
 module.exports = options;

@@ -15,17 +15,17 @@ class ProductsService {
         name: faker.commerce.productName(),
         price: parseInt(faker.commerce.price(), 10),
         image: faker.image.imageUrl(),
-        isBlocked: faker.datatype.boolean()
-      })
+        isBlocked: faker.datatype.boolean(),
+      });
     }
   }
 
   async create(data) {
     const newProduct = {
       id: faker.datatype.uuid(),
-      ...data
-    }
-    this.products.push(newProduct)
+      ...data,
+    };
+    this.products.push(newProduct);
     return newProduct;
   }
 
@@ -36,36 +36,35 @@ class ProductsService {
   async findOne(id) {
     const product = this.products.find((item) => item.id === id);
     if (!product) {
-      throw boom.notFound("product not found")
+      throw boom.notFound("product not found");
     }
     if (product.isBlocked) {
-      throw boom.conflict("product is blocked")
+      throw boom.conflict("product is blocked");
     }
     return product;
   }
 
   async update(id, changes) {
-    const index = this.products.findIndex((item) => item.id === id)
+    const index = this.products.findIndex((item) => item.id === id);
     if (index === -1) {
-      throw boom.notFound("product not found")
+      throw boom.notFound("product not found");
     }
     const product = this.products[index];
     this.products[index] = {
       ...product,
-      ...changes
-    }
-    return this.products[index]
+      ...changes,
+    };
+    return this.products[index];
   }
 
   async delete(id) {
-    const index = this.products.findIndex((item) => item.id === id)
+    const index = this.products.findIndex((item) => item.id === id);
     if (index === -1) {
-      throw boom.notFound("product not found")
+      throw boom.notFound("product not found");
     }
-    this.products.splice(index, 1)
-    return { id, message: "deleted" }
+    this.products.splice(index, 1);
+    return { id, message: "deleted" };
   }
-
 }
 
-module.exports = ProductsService
+module.exports = ProductsService;

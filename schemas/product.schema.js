@@ -2,29 +2,29 @@ const joi = require("joi");
 
 const id = joi.string().uuid();
 const name = joi.string().alphanum().min(3).max(15);
-const price = joi.number().integer().min(1)
+const price = joi.number().integer().min(1);
 
 const createProductSchema = joi.object({
   name: name.required(),
-  price: price.required()
-})
+  price: price.required(),
+});
 
 const updateProductSchema = joi.object({
   name: name,
-  price: price
-})
+  price: price,
+});
 
 const getProductSchema = joi.object({
-  id: id.required()
-})
+  id: id.required(),
+});
 
 const deleteProductSchema = joi.object({
-  id: id.required()
-})
+  id: id.required(),
+});
 
 module.exports = {
   createProductSchema,
   updateProductSchema,
   getProductSchema,
-  deleteProductSchema
-}
+  deleteProductSchema,
+};
