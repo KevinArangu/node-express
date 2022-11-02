@@ -1,7 +1,7 @@
 # NODE-EXPRESS API EXAMPLE
 ## _By Kevin Arangú_
 
-This project is an example API with node.js with Express.js
+This project is an example API with node.js & Express.js
 
 ## Enviroment & Dependencies
 
@@ -42,7 +42,7 @@ Create .env file in root directory
 
 _Example of .env file in root directory_
 ```sh
-NODE_ENV=development
+NODE_ENV=production
 ```
 
 and
